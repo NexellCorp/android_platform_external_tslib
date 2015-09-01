@@ -19,30 +19,19 @@
 #include <stdio.h>
 #include <string.h>
 #endif
-
-/* This array is used to prevent segfaults and memory overwrites
- * that can occur if multiple events are returned from ts_read_raw
- * for each event returned by ts_read
- */
-/* We found this was not needed, and have gone back to the
- * original implementation
- */
-
-// static struct ts_sample ts_read_private_samples[1024];
+#include <utils/Log.h>
 
 int ts_read(struct tsdev *ts, struct ts_sample *samp, int nr)
 {
-	int result;
-//	int i;
-//	result = ts->list->ops->read(ts->list, ts_read_private_samples, nr);
-	result = ts->list->ops->read(ts->list, samp, nr);
-//	for(i=0;i<nr;i++) {
-//		samp[i] = ts_read_private_samples[i];
-//	}
+    int result;
+    result = ts->list->ops->read(ts->list, samp, nr);
+    ALOGV("TS_READ x = %d, y = %d", samp->x , samp->y);
+
 #ifdef DEBUG
-	if (result)
-		fprintf(stderr,"TS_READ----> x = %d, y = %d, pressure = %d\n", samp->x, samp->y, samp->pressure);
+    if (result)
+        fprintf(stderr,"TS_READ----> x = %d, y = %d, pressure = %d\n", \
+        samp->x, samp->y, samp->pressure);
 #endif
-	return result;
+    return result;
 
 }

@@ -9,7 +9,7 @@
 # $Id: Makefile.am,v 1.7 2005/02/28 23:44:12 kergoth Exp $
 #
 
-AM_CFLAGS		= -DTS_POINTERCAL=\"@TS_POINTERCAL@\" $(DEBUGFLAGS) $(LIBFLAGS) $(VIS_CFLAGS)
+AM_CFLAGS		= $(DEBUGFLAGS) $(LIBFLAGS) $(VIS_CFLAGS)
 LDADD		= -rpath $(PLUGIN_DIR)
 INCLUDES		= -I$(top_srcdir)/src
   
@@ -79,12 +79,6 @@ else
 ARCTIC2_MODULE =
 endif
 
-if ENABLE_TATUNG_MODULE
-TATUNG_MODULE = tatung.la
-else
-TATUNG_MODULE =
-endif
-
 if ENABLE_INPUT_MODULE
 INPUT_MODULE = input.la
 else
@@ -108,25 +102,20 @@ pluginexec_LTLIBRARIES = \
 	$(H3600_MODULE) \
 	$(MK712_MODULE) \
 	$(ARCTIC2_MODULE) \
-	$(TATUNG_MODULE) \
 	$(H2200_LINEAR_MODULE) \
 	$(INPUT_MODULE)
   
 variance_la_SOURCES	= variance.c
 variance_la_LDFLAGS	= -module $(LTVSN)
-variance_la_LIBADD	= $(top_builddir)/src/libts.la
   
 dejitter_la_SOURCES	= dejitter.c
 dejitter_la_LDFLAGS	= -module $(LTVSN)
-dejitter_la_LIBADD	= $(top_builddir)/src/libts.la
   
 linear_la_SOURCES	= linear.c
 linear_la_LDFLAGS	= -module $(LTVSN)
-linear_la_LIBADD	= $(top_builddir)/src/libts.la
 
 pthres_la_SOURCES	= pthres.c
 pthres_la_LDFLAGS	= -module $(LTVSN)
-pthres_la_LIBADD	= $(top_builddir)/src/libts.la
 
 # hw access
 corgi_la_SOURCES	= corgi-raw.c
@@ -147,12 +136,8 @@ mk712_la_LDFLAGS	= -module $(LTVSN)
 arctic2_la_SOURCES	= arctic2-raw.c
 arctic2_la_LDFLAGS	= -module $(LTVSN)
 
-tatung_la_SOURCES	= tatung-raw.c
-tatung_la_LDFLAGS	= -module $(LTVSN)
-
 input_la_SOURCES	= input-raw.c
 input_la_LDFLAGS	= -module $(LTVSN)
-input_la_LIBADD		= $(top_builddir)/src/libts.la
 
 linear_h2200_la_SOURCES	= linear-h2200.c
 linear_h2200_la_LDFLAGS	= -module $(LTVSN)

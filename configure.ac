@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.57)
-AC_INIT(tslib, 1.0.0, kergoth@handhelds.org)
+AC_INIT(tslib, 0.0.2, kergoth@handhelds.org)
 # AC_CONFIG_AUX_DIR(config)
 AM_INIT_AUTOMAKE(dist-bzip2)
 AC_CONFIG_SRCDIR([src/ts_close.c])
@@ -43,12 +43,13 @@ AC_HEADER_TIME
 
 # Checks for library functions.
 AC_PROG_GCC_TRADITIONAL
+AC_FUNC_MALLOC
 AC_FUNC_MMAP
 AC_FUNC_SELECT_ARGTYPES
 AC_TYPE_SIGNAL
 AC_FUNC_STAT
 AC_FUNC_VPRINTF
-AC_CHECK_FUNCS([gettimeofday memmove memset munmap select strcasecmp strchr strdup strtoul])
+AC_CHECK_FUNCS([bzero gettimeofday memmove memset munmap select strcasecmp strchr strdup strtoul])
 
 # filters
 AC_MSG_CHECKING([whether linear modules is requested])
@@ -70,7 +71,7 @@ AC_MSG_RESULT($dejitter_module)
 AM_CONDITIONAL(ENABLE_DEJITTER_MODULE, test "$dejitter_module" = "yes")
 
 AC_MSG_CHECKING([whether linear-h2200 module is requested]) 
-AC_ARG_ENABLE(linear-h2200,
+AC_ARG_ENABLE(dejitter,
 	AS_HELP_STRING([--enable-linear-h2200],
 		[Enable building of linearizing filter for iPAQ h2200 (default=yes)]),
 	[h2200_linear_module=$enableval],
@@ -153,15 +154,6 @@ AC_ARG_ENABLE(arctic2,
 AC_MSG_RESULT($arctic2_module)
 AM_CONDITIONAL(ENABLE_ARCTIC2_MODULE, test "$arctic2_module" = "yes")
 
-AC_MSG_CHECKING([whether tatung module is requested])
-AC_ARG_ENABLE(tatung,
-        AS_HELP_STRING([--enable-tatung],
-                [Enable building of tatung raw module (Tatung Webpad support) (default=yes)]),
-        [tatung_module=$enableval],
-        [tatung_module=yes])
-AC_MSG_RESULT($tatung_module)
-AM_CONDITIONAL(ENABLE_TATUNG_MODULE, test "$tatung_module" = "yes")
-
 AC_MSG_CHECKING([whether input module is requested])
 AC_ARG_ENABLE(input,
         AS_HELP_STRING([--enable-input],
@@ -176,7 +168,7 @@ AC_ARG_WITH(plugindir,
         AS_HELP_STRING([--with-plugindir=ARG],
                 [Where to look for plugins (default=${libdir}/ts)]),
         [PLUGIN_DIR=$withval],
-        [PLUGIN_DIR='${libdir}/ts'])
+        [PLUGIN_DIR='${libdir}/ts/'])
 AC_MSG_RESULT($PLUGIN_DIR)
 AC_SUBST(PLUGIN_DIR)
 
@@ -200,14 +192,11 @@ AC_SUBST(LIBFLAGS)
 TS_CONF='${sysconfdir}/ts.conf'
 AC_SUBST(TS_CONF)
 
-TS_POINTERCAL='${sysconfdir}/pointercal'
-AC_SUBST(TS_POINTERCAL)
-
 # Library versioning
-LT_RELEASE=1.0
-LT_CURRENT=0
-LT_REVISION=0
-LT_AGE=0
+LT_RELEASE=0.0
+LT_CURRENT=1
+LT_REVISION=1
+LT_AGE=1
 AC_SUBST(LT_RELEASE)
 AC_SUBST(LT_CURRENT)
 AC_SUBST(LT_REVISION)

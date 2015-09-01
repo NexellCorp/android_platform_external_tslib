@@ -16,6 +16,9 @@
    */
 #define HAVE_ALLOCA_H 1
 
+/* Define to 1 if you have the `bzero' function. */
+#define HAVE_BZERO 1
+
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #define HAVE_DLFCN_H 1
 
@@ -40,6 +43,10 @@
 /* Define to 1 if you have the <limits.h> header file. */
 #define HAVE_LIMITS_H 1
 
+/* Define to 1 if your system has a GNU libc compatible `malloc' function, and
+   to 0 otherwise. */
+#define HAVE_MALLOC 1
+
 /* Define to 1 if you have the `memmove' function. */
 #define HAVE_MEMMOVE 1
 
@@ -50,7 +57,7 @@
 #define HAVE_MEMSET 1
 
 /* Define to 1 if you have a working `mmap' system call. */
-/* #undef HAVE_MMAP */
+#define HAVE_MMAP 1
 
 /* Define to 1 if you have the `munmap' function. */
 #define HAVE_MUNMAP 1
@@ -60,7 +67,7 @@
 
 /* Define to 1 if `stat' has the bug that it succeeds when given the
    zero-length file name argument. */
-#define HAVE_STAT_EMPTY_STRING_BUG 1
+/* #undef HAVE_STAT_EMPTY_STRING_BUG */
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #define HAVE_STDINT_H 1
@@ -112,7 +119,7 @@
 
 /* Define to 1 if `lstat' dereferences a symlink specified with a trailing
    slash. */
-/* #undef LSTAT_FOLLOWS_SLASHED_SYMLINK */
+#define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
 
 /* Name of package */
 #define PACKAGE "tslib"
@@ -124,13 +131,13 @@
 #define PACKAGE_NAME "tslib"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "tslib 1.0.0"
+#define PACKAGE_STRING "tslib 0.0.2"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "tslib"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.0.0"
+#define PACKAGE_VERSION "0.0.2"
 
 /* Define as the return type of signal handlers (`int' or `void'). */
 #define RETSIGTYPE void
@@ -144,14 +151,6 @@
 /* Define to the type of arg 5 for `select'. */
 #define SELECT_TYPE_ARG5 (struct timeval *)
 
-/* If using the C implementation of alloca, define if you know the
-   direction of stack growth for your system; otherwise it will be
-   automatically deduced at runtime.
-	STACK_DIRECTION > 0 => grows toward higher addresses
-	STACK_DIRECTION < 0 => grows toward lower addresses
-	STACK_DIRECTION = 0 => direction of growth unknown */
-/* #undef STACK_DIRECTION */
-
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
 
@@ -159,7 +158,7 @@
 #define TIME_WITH_SYS_TIME 1
 
 /* Version number of package */
-#define VERSION "1.0.0"
+#define VERSION "0.0.2"
 
 /* Define to empty if `const' does not conform to ANSI C. */
 /* #undef const */
@@ -170,5 +169,12 @@
 /* #undef inline */
 #endif
 
+/* Define to rpl_malloc if the replacement function should be used. */
+/* #undef malloc */
+
 /* Define to `unsigned int' if <sys/types.h> does not define. */
 /* #undef size_t */
+
+/* Define the touch screen configuration file and plugin directory. */
+#define TS_CONF "/system/etc/ts.conf"
+#define PLUGIN_DIR "/system/lib/"

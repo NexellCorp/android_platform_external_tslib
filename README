@@ -131,24 +131,3 @@ Parameters:
   xyswap
 	interchange the X and Y co-ordinates -- no longer used or needed
 	if the new linear calibration utility ts_calibrate is used.
-
-
-
-
-export QWS_MOUSE_PROTO=TPanel:/dev/input/event0
-
-export T_ROOT=/data/lib
-
-export LD_LIBRARY_PATH=$T_ROOT/lib
-
-export TSLIB_CONSOLEDEVICE=none
-
-export TSLIB_FBDEVICE=/dev/graphics/fb0
-
-export TSLIB_TSDEVICE=/dev/input/event0
-
-export TSLIB_PLUGINDIR=$T_ROOT/share/ts/plugins
-
-export TSLIB_CONFFILE=$T_ROOT/etc/ts.conf
-
-export TSLIB_CALIBFILE=$T_ROOT/etc/pointercal

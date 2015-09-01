@@ -12,6 +12,7 @@
  */
 #include "config.h"
 
+#include <utils/Log.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -21,12 +22,12 @@
 #include <sys/ioctl.h>
 #include <sys/mman.h>
 #include <sys/time.h>
-#include <sys/stat.h>
 #include <linux/kd.h>
 #include <linux/vt.h>
 #include <linux/fb.h>
 
 #include "tslib.h"
+#include <jni.h>
 
 #include "fbutils.h"
 #include "testutils.h"
@@ -163,31 +164,6 @@ static void get_sample (struct tsdev *ts, calibration *cal,
 	printf("%s : X = %4d Y = %4d\n", name, cal->x [index], cal->y [index]);
 }
 
-static void clearbuf(struct tsdev *ts)
-{
-	int fd = ts_fd(ts);
-	fd_set fdset;
-	struct timeval tv;
-	int nfds;
-	struct ts_sample sample;
-
-	while (1) {
-		FD_ZERO(&fdset);
-		FD_SET(fd, &fdset);
-
-		tv.tv_sec = 0;
-		tv.tv_usec = 0;
-
-		nfds = select(fd + 1, &fdset, NULL, NULL, &tv);
-		if (nfds == 0) break;
-
-		if (ts_read_raw(ts, &sample, 1) < 0) {
-			perror("ts_read");
-			exit(1);
-		}
-	}
-}
-
 int main()
 {
 	struct tsdev *ts;
@@ -205,8 +181,11 @@ int main()
 	if( (tsdevice = getenv("TSLIB_TSDEVICE")) != NULL ) {
 		ts = ts_open(tsdevice,0);
 	} else {
-		if (!(ts = ts_open("/dev/input/event0", 0)))
-			ts = ts_open("/dev/touchscreen/ucb1x00", 0);
+#ifdef USE_INPUT_API
+		ts = ts_open("/dev/input/event0", 0);
+#else
+		ts = ts_open("/dev/touchscreen/ucb1x00", 0);
+#endif /* USE_INPUT_API */
 	}
 
 	if (!ts) {
@@ -233,17 +212,13 @@ int main()
 
 	printf("xres = %d, yres = %d\n", xres, yres);
 
-	// Clear the buffer
-	clearbuf(ts);
+// Read a touchscreen event to clear the buffer
+	//getxy(ts, 0, 0);
 
 	get_sample (ts, &cal, 0, 50,        50,        "Top left");
-	clearbuf(ts);
 	get_sample (ts, &cal, 1, xres - 50, 50,        "Top right");
-	clearbuf(ts);
 	get_sample (ts, &cal, 2, xres - 50, yres - 50, "Bot right");
-	clearbuf(ts);
 	get_sample (ts, &cal, 3, 50,        yres - 50, "Bot left");
-	clearbuf(ts);
 	get_sample (ts, &cal, 4, xres / 2,  yres / 2,  "Center");
 
 	if (perform_calibration (&cal)) {
@@ -251,11 +226,9 @@ int main()
 		for (i = 0; i < 7; i++) printf("%d ", cal.a [i]);
 		printf("\n");
 		if ((calfile = getenv("TSLIB_CALIBFILE")) != NULL) {
-			cal_fd = open (calfile, O_CREAT | O_RDWR,
-			               S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+			cal_fd = open (calfile, O_CREAT | O_RDWR);
 		} else {
-			cal_fd = open (TS_POINTERCAL, O_CREAT | O_RDWR,
-			               S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+			cal_fd = open ("/etc/pointercal", O_CREAT | O_RDWR);
 		}
 		sprintf (cal_buffer,"%d %d %d %d %d %d %d",
 			 cal.a[1], cal.a[2], cal.a[0],
