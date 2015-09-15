@@ -117,7 +117,6 @@ TSAPI struct tslib_module_info *mod_init(struct tsdev *dev, const char *params)
     int index;
     char *tokptr;
     char *calfile=NULL;
-    char *defaultcalfile = "/data/data/touchscreen.calibratioin/files/pointercal";
 
     ALOGV("tslib: Inside  mod_init of linear");
     lin = malloc(sizeof(struct tslib_linear));
