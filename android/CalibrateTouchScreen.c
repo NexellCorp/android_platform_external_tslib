@@ -112,10 +112,9 @@ int calibrateAndroid(int *a, int ts_fd)
     char *calfile = NULL;
     int i, j;
     char cal_buffer[256];
-	int elements[20] = {100, 522, 938, 523, 931, 68, 93, 66, 516, 298, 50, 50, 974, 50, 974, 550, 50, 550, 512, 300};
+	int elements[20] = {85, 535, 946, 529, 944, 68, 74, 72, 513, 302, 50, 50, 974, 50, 974, 550, 50, 550, 512, 300};
 
     char *defaultcalfile = "/data/data/touchscreen.calibration/files/pointercal";
-    //char *defaultcalfile = "/data/pointercal";
     int height, width;
     struct stat sbuf;
     int pcal_fd;
