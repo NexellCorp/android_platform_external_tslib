@@ -47,7 +47,7 @@ static const struct tslib_ops corgi_ops =
 	.read	= corgi_read,
 };
 
-TSAPI struct tslib_module_info *mod_init(struct tsdev *dev, const char *params)
+TSAPI struct tslib_module_info *mod_init(struct tsdev *dev __attribute__((unused)), const char *params)
 {
 	struct tslib_module_info *m;
 

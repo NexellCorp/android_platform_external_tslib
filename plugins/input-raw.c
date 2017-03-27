@@ -25,6 +25,7 @@
 #endif
 #include <sys/time.h>
 #include <sys/types.h>
+#include <string.h>
 
 #include <linux/input.h>
 #ifndef EV_SYN /* 2.4 kernel headers */

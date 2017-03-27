@@ -92,7 +92,9 @@ static const struct tslib_ops linear_ops =
     .fini   = linear_fini,
 };
 
-static int linear_xyswap(struct tslib_module_info *inf, char *str, void *data)
+static int linear_xyswap(struct tslib_module_info *inf,
+			 char *str __attribute__((unused)),
+			 void *data __attribute__((unused)))
 {
     struct tslib_linear *lin = (struct tslib_linear *)inf;
 
@@ -107,6 +109,7 @@ static const struct tslib_vars linear_vars[] =
 
 #define NR_VARS (sizeof(linear_vars) / sizeof(linear_vars[0]))
 
+extern int calibrateAndroid(int *a, int ts_fd);
 TSAPI struct tslib_module_info *mod_init(struct tsdev *dev, const char *params)
 {
 

@@ -16,6 +16,7 @@
 #include <alloca.h>
 #endif
 #include <string.h>
+#include <strings.h>
 
 #include "tslib-private.h"
 

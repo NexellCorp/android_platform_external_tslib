@@ -43,7 +43,9 @@ extern "C" {
 #define MAX_NUMBER_OF_EVENTS 5
 
 //#define NDEBUG 0
+#ifndef LOG_TAG
 #define LOG_TAG "tslib"
+#endif
 
 struct tsdev;
 
