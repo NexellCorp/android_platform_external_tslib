@@ -32,14 +32,14 @@
 
 #include "tslib-private.h"
 
-static int __ts_read_raw(struct tslib_module_info *inf, struct ts_sample *samp, int nr)
+static int __ts_read_raw(struct tslib_module_info *inf __attribute__((unused)), struct ts_sample *samp __attribute__((unused)), int nr)
 {
-	struct tsdev *ts = inf->dev;
+	/* struct tsdev *ts = inf->dev; */
 #ifdef USE_INPUT_API
 	struct input_event ev;
 #endif /* USE_INPUT_API */
 	int ret = nr;
-	int total = 0;
+	/* int total = 0; */
 
 #ifdef USE_INPUT_API
 #ifdef EV_SYN
@@ -180,11 +180,11 @@ static int __ts_read_raw(struct tslib_module_info *inf, struct ts_sample *samp, 
 
 static const struct tslib_ops __ts_raw_ops =
 {
-	read:	__ts_read_raw,
+	.read = __ts_read_raw,
 };
 
 struct tslib_module_info __ts_raw =
 {
-	next:	NULL,
-	ops:	&__ts_raw_ops,
+	.next =	NULL,
+	.ops  =	&__ts_raw_ops,
 };

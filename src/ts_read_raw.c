@@ -24,7 +24,8 @@ int ts_read_raw(struct tsdev *ts, struct ts_sample *samp, int nr)
 #ifdef DEBUG
 	fprintf(stderr,"TS_READ_RAW----> x = %d, y = %d, pressure = %d\n", samp->x, samp->y, samp->pressure);
 #endif
-	if((samp->total_events) != NULL){
+	/* if((samp->total_events) != NULL){ */
+	if((samp->total_events) != 0){
 		if(result == -1){
 			result = 0;
 			samp->total_events = 0;

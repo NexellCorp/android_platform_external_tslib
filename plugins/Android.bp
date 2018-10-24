@@ -1,0 +1,116 @@
+// Copyright (C) 2013 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+cc_library_shared {
+    name: "corgi",
+
+    srcs: [
+        "corgi-raw.c",
+    ],
+
+    include_dirs: [
+        "external/tslib",
+        "external/tslib/src",
+    ],
+}
+
+cc_library_shared {
+    name: "dejitter",
+
+    srcs: [
+        "dejitter.c",
+        "ts_parse_vars.c",
+    ],
+
+    shared_libs: [
+        "libcutils",
+    ],
+
+    include_dirs: [
+        "external/tslib",
+        "external/tslib/src",
+    ],
+}
+
+cc_library_shared {
+    name: "inputraw",
+
+    srcs: [
+        "input-raw.c",
+    ],
+
+    shared_libs: [
+        "libcutils",
+    ],
+
+    include_dirs: [
+        "external/tslib",
+        "external/tslib/src",
+    ],
+}
+
+cc_library_shared {
+    name: "linear",
+
+    srcs: [
+        "linear.c",
+        "ts_parse_vars.c",
+		"CalibrateTouchScreen.c",
+    ],
+
+    shared_libs: [
+        "libcutils",
+    ],
+
+    include_dirs: [
+        "external/tslib",
+        "external/tslib/src",
+    ],
+}
+
+cc_library_shared {
+    name: "variance",
+
+    srcs: [
+        "variance.c",
+        "ts_parse_vars.c",
+    ],
+
+    shared_libs: [
+        "libcutils",
+    ],
+
+    include_dirs: [
+        "external/tslib",
+        "external/tslib/src",
+    ],
+}
+
+cc_library_shared {
+    name: "pthres",
+
+    srcs: [
+        "pthres.c",
+        "ts_parse_vars.c",
+    ],
+
+    shared_libs: [
+        "libcutils",
+    ],
+
+    include_dirs: [
+        "external/tslib",
+        "external/tslib/src",
+    ],
+}

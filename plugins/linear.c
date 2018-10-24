@@ -114,18 +114,18 @@ TSAPI struct tslib_module_info *mod_init(struct tsdev *dev, const char *params)
 {
 
     struct tslib_linear *lin;
-    struct stat sbuf;
-    int pcal_fd;
-    char pcalbuf[200];
+    /* struct stat sbuf; */
+    /* int pcal_fd; */
+    /* char pcalbuf[200]; */
     int index;
-    char *tokptr;
-    char *calfile=NULL;
+    /* char *tokptr; */
+    /* char *calfile=NULL; */
 
     ALOGV("tslib: Inside  mod_init of linear");
     lin = malloc(sizeof(struct tslib_linear));
     if (lin == NULL)
     {
-        ALOGE("tslib:malloc failed in mod_init \n" );
+        /* ALOGE("tslib:malloc failed in mod_init \n" ); */
         return NULL;
     }
 
@@ -155,7 +155,7 @@ TSAPI struct tslib_module_info *mod_init(struct tsdev *dev, const char *params)
      */
     ALOGV("tslib: Calling parse_vars \n" );
     if (tslib_parse_vars(&lin->module, linear_vars, NR_VARS, params)) {
-        ALOGE("tslib:ParseVars() failed \n" );
+        /* ALOGE("tslib:ParseVars() failed \n" ); */
         free(lin);
         return NULL;
     }

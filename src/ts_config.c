@@ -39,7 +39,6 @@ int ts_config(struct tsdev *ts)
 
     f = fopen(conffile, "r");
     if (!f) {
-        ALOGE(stderr,"tslib: ts_config file read fail\n");
         perror("Couldnt open tslib config file");
         return -1;
     }
@@ -83,7 +82,6 @@ int ts_config(struct tsdev *ts)
             module_name = strsep(&p, " \t");
             ret = ts_load_module_raw(ts, module_name, p);
         } else {
-            ALOGE("%s: Unrecognised option %s:%d:%s\n", conffile, line, tok);
             break;
         }
         if (ret != 0) {

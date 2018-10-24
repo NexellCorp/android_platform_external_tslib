@@ -81,7 +81,7 @@ static int ts_input_read(struct tslib_module_info *inf,
     int ret = nr;
     int total = 0;
     int check_read = 1; // check read fail 
-    int count;
+    int count = 0;
     samp->total_events = 0;
 
     ALOGV("Input-raw module read");
@@ -269,7 +269,8 @@ static const struct tslib_ops __ts_input_ops = {
     .fini   = ts_input_fini,
 };
 
-TSAPI struct tslib_module_info *mod_init(struct tsdev *dev, const char *params)
+TSAPI struct tslib_module_info *mod_init(struct tsdev *dev __attribute__((unused)),
+					 const char * params __attribute__((unused)))
 {
     struct tslib_input *i;
 

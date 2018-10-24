@@ -17,11 +17,11 @@ static int corgi_read(struct tslib_module_info *inf, struct ts_sample *samp, int
 	struct tsdev *ts = inf->dev;
 	struct corgi_ts_event *corgi_evt;
 	int ret;
-	int total = 0;
+	/* int total = 0; */
 	corgi_evt = alloca(sizeof(*corgi_evt) * nr);
 	ret = read(ts->fd, corgi_evt, sizeof(*corgi_evt) * nr);
 	if(ret > 0) {
-		int nr = ret / sizeof(*corgi_evt);
+		/* int nr = ret / sizeof(*corgi_evt); */
 		while(ret >= (int)sizeof(*corgi_evt)) {
 			samp->x = corgi_evt->x;
 			samp->y = corgi_evt->y;
@@ -47,7 +47,7 @@ static const struct tslib_ops corgi_ops =
 	.read	= corgi_read,
 };
 
-TSAPI struct tslib_module_info *mod_init(struct tsdev *dev __attribute__((unused)), const char *params)
+TSAPI struct tslib_module_info *mod_init(struct tsdev *dev __attribute__((unused)), const char *params __attribute__((unused)))
 {
 	struct tslib_module_info *m;
 
