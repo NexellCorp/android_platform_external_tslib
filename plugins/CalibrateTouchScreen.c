@@ -124,6 +124,7 @@ int calibrateAndroid(int *a, int ts_fd)
     char pcalbuf[200];
     int index;
     char *tokptr;
+    int element_num = ((sizeof(elements))/sizeof(int))/2;
 
 
     if((calfile = getenv("TSLIB_CALIBFILE")) == NULL) calfile = defaultcalfile;
@@ -155,7 +156,8 @@ int calibrateAndroid(int *a, int ts_fd)
 
         //Assigning and filling the calibration struct
         j = 0;
-        for(i=0; i< ((sizeof(elements))/sizeof(int))/2; i+=2){
+        /* for(i=0; i < ((sizeof(elements))/sizeof(int))/2; i+=2){ */
+        for(i=0; i < element_num; i+=2){
 
             elements[i] = (elements[i] * info_X.maximum)/width;
             elements[i+1] = (elements[i+1] * info_Y.maximum)/height;
