@@ -36,7 +36,7 @@ cc_library_shared {
     ],
 
     include_dirs: [
-        "external/tslib",
+        "vendor/nexell/external/tslib",
     ],
 
     cflags: [

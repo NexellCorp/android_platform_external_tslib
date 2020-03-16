@@ -20,8 +20,8 @@ cc_library_shared {
     ],
 
     include_dirs: [
-        "external/tslib",
-        "external/tslib/src",
+        "vendor/nexell/external/tslib",
+        "vendor/nexell/external/tslib/src",
     ],
 }
 
@@ -38,8 +38,8 @@ cc_library_shared {
     ],
 
     include_dirs: [
-        "external/tslib",
-        "external/tslib/src",
+        "vendor/nexell/external/tslib",
+        "vendor/nexell/external/tslib/src",
     ],
 }
 
@@ -55,8 +55,8 @@ cc_library_shared {
     ],
 
     include_dirs: [
-        "external/tslib",
-        "external/tslib/src",
+        "vendor/nexell/external/tslib",
+        "vendor/nexell/external/tslib/src",
     ],
 }
 
@@ -74,8 +74,8 @@ cc_library_shared {
     ],
 
     include_dirs: [
-        "external/tslib",
-        "external/tslib/src",
+        "vendor/nexell/external/tslib",
+        "vendor/nexell/external/tslib/src",
     ],
 }
 
@@ -92,8 +92,8 @@ cc_library_shared {
     ],
 
     include_dirs: [
-        "external/tslib",
-        "external/tslib/src",
+        "vendor/nexell/external/tslib",
+        "vendor/nexell/external/tslib/src",
     ],
 }
 
@@ -110,7 +110,7 @@ cc_library_shared {
     ],
 
     include_dirs: [
-        "external/tslib",
-        "external/tslib/src",
+        "vendor/nexell/external/tslib",
+        "vendor/nexell/external/tslib/src",
     ],
 }
